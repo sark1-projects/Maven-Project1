@@ -1,0 +1,30 @@
+name: Pull Docker Image and create and upload artifacts inside container
+
+on:
+  workflow_call:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+    
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt install maven -y
+          apt-get update
+          mvn -version
+          mvn -B package --file pom.xml
+          mkdir artifact && cp target/*.jar artifact  
+      - name: upload arifacts
+        uses: actions/upload-artifact@v2
+        with:
+         name: artifacts
+         path: artifact
