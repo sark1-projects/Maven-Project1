@@ -28,3 +28,4 @@ jobs:
         with:
          name: artifacts
          path: artifact
+         retention-days: 30
