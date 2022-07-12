@@ -21,7 +21,7 @@ jobs:
   compile-java18-maven:
      needs: inputs
      if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 18)"
-     uses: sark1-projects/Maven-Project1/.github/workflows/pullandpush.yml@master
+     uses: sark1-projects/Main/.github/workflows/pullandpush.yml@master
    
       
      
