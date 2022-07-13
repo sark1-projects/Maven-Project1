@@ -57,7 +57,7 @@ jobs:
          run: echo artifact downloaded
           
   security-scan:
-    if: ${{ contains(join(needs.*.result, ','), 'success') && !contains(join(needs.*.result, ','), 'failure')}}
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') && !contains(join(needs.*.result, ','), 'failure')}}
     needs: [Code-Quality]
     #if: github.event.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
          run: echo 'scanning'
          
   Quality-Gates:
-    if: ${{ always() }}
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') && !contains(join(needs.*.result, ','), 'failure')}}
     needs: security-scan
     #if: github.event.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
@@ -88,7 +88,7 @@ jobs:
       - name: validations status
         run: echo 'ChangeRequest Validation "performed"'
     
-  Deploy_Develop:
+  Deploy_feature:
     if: ${{ always() && github.event.ref == 'refs/heads/feature' }}
     runs-on: ubuntu-latest
     environment: 
@@ -100,7 +100,7 @@ jobs:
          run: echo 'feature branch'
    
   
-  Deploy_Stage:
+  Deploy_Develop:
     if: ${{ always() && github.event.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     environment: 
@@ -111,7 +111,7 @@ jobs:
        - name: deploying into develop branch
          run: echo 'develop branch'
          
-  Deploy_PROD:
+  Deploy_Master:
     if: ${{ always() && github.event.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     environment: 
