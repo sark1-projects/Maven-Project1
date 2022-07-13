@@ -16,6 +16,8 @@ on:
             value: ${{ jobs.example_job.outputs.output6 }}
          TragetFileType: 
             value: ${{ jobs.example_job.outputs.output7 }}
+         nodeVersion:
+            value: ${{ jobs.example_job.outputs.output8 }}
 jobs:
   example_job:
     name: Generate output
@@ -28,6 +30,7 @@ jobs:
       output5: ${{ steps.step5.outputs.appName }}
       output6: ${{ steps.step6.outputs.NewJarFileName }}
       output7: ${{ steps.step7.outputs.TragetFileType }}
+      output8: ${{ steps.step7.outputs.nodeVersion }}
     steps:
       - id: step1
         run: echo "::set-output name=pipelinetype::'azureappservice'"
@@ -43,3 +46,5 @@ jobs:
         run: echo "::set-output name=NewJarFileName::'app.jar'" 
       - id: step7
         run: echo "::set-output name=TargetFileType::'jar'"
+      - id: step8
+        run: echo "::set-output name=nodeVersion::'16'"
