@@ -10,34 +10,34 @@ on:
   workflow_dispatch:
   
 jobs:
-  inputs:
+  pipelineconfig:
      uses: sark1-projects/Maven-Project1/.github/workflows/pipelineconfig.yml@master
      
   compile-java1_8-maven:
-     needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
+     needs: pipelineconfig
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 1.8)"
      uses: sark1-projects/Maven-Project1/.github/workflows/java1_8-maven.yml@master
      
   compile-java18-maven:
-     needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 18)"
+     needs: pipelineconfig
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 18)"
      uses: sark1-projects/Main/.github/workflows/pullandpush.yml@main
    
       
      
   compile-java11-maven:
-     needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 11)"
+     needs: pipelineconfig
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 11)"
      uses: sark1-projects/Maven-Project1/.github/workflows/java11-maven.yml@master
      
   compile-java17-maven:
-     needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 17)"
+     needs: pipelineconfig
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 17)"
      uses: sark1-projects/Maven-Project1/.github/workflows/java17-maven.yml@master
      
   compile-npm:
-    needs: inputs
-    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
+    needs: pipelineconfig
+    if: "contains(needs.pipelineconfig.outputs.buildTool, 'npm') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 1.8)"
     uses: sark1-projects/Maven-Project1/.github/workflows/npm.yml@master
     with:
       image_name: ubuntu
@@ -45,8 +45,8 @@ jobs:
        registry_username: ${{ secrets.REGISTRY_USERNAME }}
        registry_password: ${{ secrets.REGISTRY_PASSWORD }}
   compile-ng:
-    needs: inputs
-    if: "contains(needs.inputs.outputs.buildTool, 'ng')"
+    needs: pipelineconfig
+    if: "contains(needs.pipelineconfig.outputs.buildTool, 'ng')"
     uses: sark1-projects/Maven-Project1/.github/workflows/ng.yml@master
     
     
