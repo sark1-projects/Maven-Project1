@@ -29,24 +29,12 @@ jobs:
       java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
       node-version: ${{ needs.pipelineconfig.outputs.nodeVersion}}
      
-  compile-npm:
-    needs: pipelineconfig
-    if: "contains(needs.pipelineconfig.outputs.buildTool, 'npm') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 1.8)"
-    uses: sark1-projects/Maven-Project1/.github/workflows/npm.yml@master
-    with:
-      image_name: ubuntu
-    secrets:
-       registry_username: ${{ secrets.REGISTRY_USERNAME }}
-       registry_password: ${{ secrets.REGISTRY_PASSWORD }}
-  compile-ng:
-    needs: pipelineconfig
-    if: "contains(needs.pipelineconfig.outputs.buildTool, 'ng')"
-    uses: sark1-projects/Maven-Project1/.github/workflows/ng.yml@master
+
     
     
   Code-Quality:
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
-    needs: [compile-npm,compile-ng,compile-java-maven]
+    needs: [compile-java-node-maven-npm,compile-java-maven]
     runs-on: ubuntu-latest
     container: 
       image: ubuntu
