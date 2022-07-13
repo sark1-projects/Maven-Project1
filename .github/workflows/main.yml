@@ -21,7 +21,13 @@ jobs:
      with:
       java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
    
-      
+  compile-java-node-maven-npm:
+     needs: pipelineconfig
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven-npm') && contains(needs.pipelineconfig.outputs.language, 'java-node')"
+     uses: sark1-projects/Main/.github/workflows/java-node-maven-npm.yml@main
+     with:
+      java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
+      node-version: ${{ needs.pipelineconfig.outputs.nodeVersion}}
      
   compile-npm:
     needs: pipelineconfig
