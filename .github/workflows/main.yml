@@ -57,7 +57,7 @@ jobs:
          run: echo artifact downloaded
           
   security-scan:
-  
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') && !contains(join(needs.*.result, ','), 'failure')}}
     needs: [Code-Quality]
     #if: github.event.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
