@@ -17,7 +17,7 @@ jobs:
   compile-java-maven:
      needs: pipelineconfig
      if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
-     uses: sark1-projects/Main/.github/workflows/pullandpush.yml@main
+     uses: sark1-projects/Main/.github/workflows/java-maven.yml@main
      with:
       java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
    
