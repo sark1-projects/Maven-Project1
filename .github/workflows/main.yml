@@ -24,7 +24,7 @@ jobs:
      if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 18)"
      uses: sark1-projects/Main/.github/workflows/pullandpush.yml@main
      with:
-      java-version: ${{ needs.pipelineconfig.javaVersion}}
+      java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
    
       
      
