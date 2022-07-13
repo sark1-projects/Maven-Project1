@@ -13,30 +13,15 @@ jobs:
   pipelineconfig:
      uses: sark1-projects/Maven-Project1/.github/workflows/pipelineconfig.yml@master
      
-  compile-java1_8-maven:
+ 
+  compile-java-maven:
      needs: pipelineconfig
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 1.8)"
-     uses: sark1-projects/Maven-Project1/.github/workflows/java1_8-maven.yml@master
-   
-     
-  compile-java18-maven:
-     needs: pipelineconfig
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 18)"
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      uses: sark1-projects/Main/.github/workflows/pullandpush.yml@main
      with:
       java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
    
       
-     
-  compile-java11-maven:
-     needs: pipelineconfig
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 11)"
-     uses: sark1-projects/Maven-Project1/.github/workflows/java11-maven.yml@master
-     
-  compile-java17-maven:
-     needs: pipelineconfig
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java') && contains(needs.pipelineconfig.outputs.javaVersion, 17)"
-     uses: sark1-projects/Maven-Project1/.github/workflows/java17-maven.yml@master
      
   compile-npm:
     needs: pipelineconfig
@@ -55,7 +40,7 @@ jobs:
     
   Code-Quality:
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
-    needs: [compile-java1_8-maven,compile-npm,compile-ng,compile-java17-maven,compile-java11-maven,compile-java18-maven]
+    needs: [compile-npm,compile-ng,compile-java-maven]
     runs-on: ubuntu-latest
     container: 
       image: ubuntu
