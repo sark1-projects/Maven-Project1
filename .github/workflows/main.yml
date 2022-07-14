@@ -36,7 +36,7 @@ jobs:
     needs: [compile-java-node-maven-npm,compile-java-maven]
     if: |
        !failure() && !cancelled() && 
-       (success('compile-java-node-maven-npm') || success('compile-java-maven))
+       (success('compile-java-node-maven-npm') || success('compile-java-maven'))
     runs-on: ubuntu-latest
     container: 
       image: ubuntu
