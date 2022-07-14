@@ -50,7 +50,7 @@ jobs:
          with:
            name: artifacts
        - name: show artifacts
-         run: echo artifact downloaded
+         run: echos artifact downloaded
           
   security-scan:
    
