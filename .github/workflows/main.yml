@@ -33,8 +33,10 @@ jobs:
     
     
   Code-Quality:
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     needs: [compile-java-node-maven-npm,compile-java-maven]
+    if: |
+       !failure() && !cancelled() && 
+       (success('compile-java-node-maven-npm') || success('compile-java-maven))
     runs-on: ubuntu-latest
     container: 
       image: ubuntu
