@@ -17,13 +17,12 @@ jobs:
   compile-java-maven:
      needs: pipelineconfig
      runs-on: ubuntu
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
+     #if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      steps:
-      - uses: sark1-projects/Main/.github/workflows/java-maven.yml@main
-        with:
-         java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
+      - name: create artifact
+        run: echo "subhajit" > subhajit.txt
       - uses: actions/cache@v2
-        id: restore-build
+        id: rt1
         with:
           path: ./*
           key: ${{ github.sha }}
