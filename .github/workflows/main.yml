@@ -1,4 +1,4 @@
-name: ${{github.event.ref}}
+name: main
 
 on:
   pull_request:
