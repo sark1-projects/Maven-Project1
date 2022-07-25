@@ -16,7 +16,7 @@ jobs:
  
   compile-java-maven:
      needs: pipelineconfig
-     runs-on: ubuntu
+     runs-on: ubuntu-latest
      #if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      steps:
       - name: create artifact
