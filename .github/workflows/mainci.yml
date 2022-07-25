@@ -28,7 +28,7 @@ jobs:
           key: ${{ github.sha }}
       - run: cat subhajit.txt
   upload-cache:
-     #needs: pipelineconfig
+     needs: compile-java-maven
      runs-on: ubuntu-latest
      #if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      steps:
