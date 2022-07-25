@@ -16,9 +16,16 @@ jobs:
  
   compile-java-maven:
      needs: pipelineconfig
+     runs-on: ubuntu
      if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
-     uses: sark1-projects/Main/.github/workflows/java-maven.yml@main
-     with:
-      java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
+     steps:
+      - uses: sark1-projects/Main/.github/workflows/java-maven.yml@main
+        with:
+         java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
 
  
