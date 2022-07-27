@@ -21,7 +21,7 @@ jobs:
   Code-Quality:
     needs: [compile-java-maven]
     if: |
-       !failure() && !cancelled() && success('compile-java-maven'))
+       !failure() && !cancelled() && success('compile-java-maven')
     runs-on: ubuntu-latest
     container: 
       image: ubuntu
