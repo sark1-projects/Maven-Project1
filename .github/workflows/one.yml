@@ -2,5 +2,9 @@ name: one
 on:
   workflow_dispatch:
 jobs:
+
+  
   job1:
-    run: echo "${{ github.run_id }}"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.run_id }}"
