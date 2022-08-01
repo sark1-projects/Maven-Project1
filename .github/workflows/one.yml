@@ -9,7 +9,7 @@ jobs:
     steps:
       - run: |
           echo "${{ github.run_id }}"
-          #echo "github.event.ref
+         
           echo 'github.event.ref'
           echo "github.event.ref"
           echo ${{github.event.ref}}
