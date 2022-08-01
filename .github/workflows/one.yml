@@ -7,31 +7,9 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ github.run_id }}"
-  pipelineconfig:
-     uses: sark1-projects/Maven-Project1/.github/workflows/pipelineconfig.yml@master
-     
- 
-  compile-java-maven:
-     needs: pipelineconfig
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
-     uses: sark1-projects/Main/.github/workflows/java-maven.yml@main
-     with:
-      java-version: ${{ needs.pipelineconfig.outputs.javaVersion}}
-  Code-Quality:
-    needs: [compile-java-maven]
-    if: |
-       !failure() && !cancelled() && success('compile-java-maven')
-    runs-on: ubuntu-latest
-    container: 
-      image: ubuntu
-
-    steps:
-       - uses: actions/checkout@v3
-       - name: code Analysis
-         run: echo 'mvn sonar:sonar'
-       - name: Download artifacts
-         uses: actions/download-artifact@v2
-         with:
-           name: artifacts
-           path: artifact
+      - run: |
+          echo "${{ github.run_id }}"
+          echo github.event.ref
+          echo 'github.event.ref'
+          echo "github.event.ref"
+          echo ${{github.event.ref}}
