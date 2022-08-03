@@ -8,11 +8,11 @@ on:
          pipelineType:
             value: "azstaticwebapp"
          language:
-            value: "nodejs"
+            value: "java"
          nodeVersion:
             value: 16
          buildTool: 
-            value: "npm"
+            value: "maven"
          appName: 
             value: "abc"
          package: 
