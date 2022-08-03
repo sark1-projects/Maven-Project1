@@ -1,13 +1,22 @@
 name: one
 on:
+  pull_request:
+    branches:    
+      - master
+      - develop
+      - feature
+     
   workflow_dispatch:
-jobs:
-
   
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "${{ github.run_id }}"
-         
+jobs:
+  pipelineconfig:
+     uses: sark1-projects/Maven-Project1/.github/workflows/pipe.yml@master
+     
+ 
+  compile-java-maven:
+     needs: pipelineconfig
+     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
+     runs-on: ubuntu-latest
+     steps:
+      - run: echo ${{needs.pipelineconfig.jobs.Environments.env.DEV_resourceGroup}}
           
