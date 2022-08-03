@@ -44,14 +44,17 @@ jobs:
           DEV_resourceGroup: "rg-12149-d-006"
           DEV_staticwebappName: "azapp-12149-d-006"
           DEV_env: "dev"
+        run: echo dev
       - name: Stage Environment
         env:
           STAGE_resourceGroup: "rg-12149-d-006"
           STAGE_staticwebappName: "azapp-12149-d-006"
           STAGE_env: "stage"
+        run: echo stage
       - name: Prod Environment
         env:
           PROD_resourceGroup: "rg-12149-d-006"
           PROD_staticwebappName: "azapp-12149-d-006"
           PROD_env: "stage"
+        run: echo prod
     
