@@ -18,5 +18,5 @@ jobs:
      if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      runs-on: ubuntu-latest
      steps:
-      - run: echo ${{needs.pipelineconfig.jobs.Environments.env.DEV_resourceGroup}}
+      - run: echo ${{needs.pipelineconfig.Environments.env.DEV_resourceGroup}}
           
