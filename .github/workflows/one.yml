@@ -19,8 +19,5 @@ jobs:
      runs-on: ubuntu-latest
      steps:
       - run: |
-            echo ${{needs.pipelineconfig.Environments.steps.env.DEV_resourceGroup}}
-            echo ${{needs.pipelineconfig.jobs.Environments.steps.env.DEV_resourceGroup}}
-            echo ${{needs.pipelineconfig.Environments.steps.DEV_resourceGroup}}
             echo ${{ github.event.repository.name }}
           
