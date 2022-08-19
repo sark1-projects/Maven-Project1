@@ -20,5 +20,5 @@ jobs:
      steps:
       - run: |
             echo ${{ github.event.repository.name }}
-            echo $(basename ${{ github.repository }})
+            echo $(basename ${{ github.event.ref }})
           
