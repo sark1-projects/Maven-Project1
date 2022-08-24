@@ -5,7 +5,7 @@ on:
     inputs:
       runn:
         type: string
-        required: true
+        required: false
         default: " echo sub"
 jobs:
   job1:
