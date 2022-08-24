@@ -10,4 +10,4 @@ on:
 jobs:
   job1:
     runs-on: ubuntu
-    - run: ${{ inputs.runn }}
+      - run: ${{ inputs.runn }}
