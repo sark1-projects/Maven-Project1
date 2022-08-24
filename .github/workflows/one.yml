@@ -11,8 +11,8 @@ on:
 jobs:
   pipelineconfig:
      uses: sark1-projects/Maven-Project1/.github/workflows/call.yml@master
-     with:
-       runn: echo "subb!"
+    # with:
+       # runn: echo "subb!"
         
     
      
