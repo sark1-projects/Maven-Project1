@@ -1,0 +1,13 @@
+name: call
+
+on:
+  workflow_call:
+    inputs:
+      runn:
+        type: string
+        required: true
+        default: " echo sub"
+jobs:
+  job1:
+    runs-on: ubuntu
+    - run: ${{ inputs.runn }}
