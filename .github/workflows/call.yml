@@ -9,5 +9,6 @@ on:
         default: " echo sub"
 jobs:
   job1:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
+    steps:
       - run: ${{ inputs.runn }}
