@@ -12,8 +12,9 @@ jobs:
   pipelineconfig:
      uses: sark1-projects/Maven-Project1/.github/workflows/call.yml@master
      with:
-       runn: echo $(basename ${{ github.event.ref }})
-        
+       runn: |
+            echo $(basename ${{ github.event.ref }})
+            echo ${{ github.event.repository.name }}
     
      
  
