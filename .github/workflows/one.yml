@@ -19,7 +19,7 @@ jobs:
      
  
   compile-java-maven:
-     needs: pipelineconfig
+     needs: pipelineconf*
      if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      runs-on: ubuntu-latest
      steps:
