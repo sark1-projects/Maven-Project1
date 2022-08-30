@@ -14,19 +14,26 @@ jobs:
      with:
        runn: |
             echo $(basename ${{ github.event.ref }})
-            echo ${{ github.event.repository.name }} > pipe.txt
+            echo ${{ github.event.repository.name }} 
     
      
  
   compile-java-maven:
      needs: pipelineconfig
-     if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
+    # if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
      runs-on: ubuntu-latest
      steps:
       - run: |
             echo ${{ github.event.repository.name }}
-            echo $(basename ${{ github.event.ref }})
+            echo $(basename ${{ github.event.ref }}) > pipe.txt
             cat pipe.txt
-            
-    
+  com:
+     needs: compile-java-maven
+    # if: "contains(needs.pipelineconfig.outputs.buildTool, 'maven') && contains(needs.pipelineconfig.outputs.language, 'java')"
+     runs-on: ubuntu-latest
+     steps:
+      - run: |
+          
+            cat pipe.txt          
+  
           
