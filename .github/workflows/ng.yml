@@ -1,6 +1,7 @@
 name: ng
 on:
   workflow_call:
+  push:
      
 jobs:
     build:
